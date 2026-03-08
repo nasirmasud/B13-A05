@@ -28,7 +28,24 @@ function displayIssues(issues) {
     }
     const labelsHtml = issue.labels
       .map((label) => {
-        return `<span class="badge badge-sm bg-gray-100 text-gray-600 border-none text-[10px] font-bold uppercase">${label}</span>`;
+        const text = label.toUpperCase().trim();
+        let style = "bg-gray-50 text-gray-500 border-gray-200";
+        let icon = "fa-tags";
+
+        if (text === "BUG") {
+          style = "bg-red-50 text-red-500 border-red-200";
+          icon = "fa-bug";
+        } else if (text === "HELP WANTED") {
+          style = "bg-orange-50 text-orange-600 border-orange-200";
+          icon = "fa-life-ring";
+        } else if (text === "ENHANCEMENT") {
+          style = "bg-emerald-50 text-emerald-600 border-emerald-200";
+          icon = "fa-wand-magic-sparkles";
+        }
+
+        return `<span class="badge border rounded-full px-3 py-3 text-[10px] font-bold flex items-center gap-1 ${style}">
+            <i class="fa-solid ${icon}"></i>${text}
+          </span>`;
       })
       .join("");
 
