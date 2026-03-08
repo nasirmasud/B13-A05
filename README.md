@@ -1,129 +1,27 @@
-# 🌟 Welcome To (সহজ সরল সিম্পল) Assignment - 5
+### What is the difference between var, let, and const?
 
-# **📅 Deadline For 60 marks:** 9th March, 2026 (11:59 pm ⏱️)  
-#  📅 No Deadline For 50 marks  
-# **📅 Deadline For 30 marks:** Any time after 9th March.
+Var, let & const are 3 different style of declaring JavaScript variables. They all have some behavioral differences with Scoping, Redeclaration & Hoisting.
 
----
+- Ver was the only way for declaring JavaScript variables till JavaScript ES5. It is Function Scoped. It can be Redeclared & could be change Its value anytime which is problematic at many time. For hoisting, it is hoisted & set the value 'undefined' if its value is not declared before.
+- Let was very popular & effective way to declare variable from JavaScript ES6. It is Block Scoped, It can be Redeclared outside its scope, can be changed its value anytime. For hoisting, it is also hoisted & unlike var it throws reference error if its value is not declared.
+- Const is also used from JavaScript ES6. It comes from the word constant. It is also Block Scoped, but It can not be Redeclared & can not be changed its value at-all. For hoisting, it is also hoisted & it can not be declared without value.
 
-# Assignment-05: GitHub Issues Tracker
+### What is the spread operator (...)?
 
+- Spread Operator is a feature that is used to spread the items of any array or object. It also crate a copy of array & can concat multiple arrays or objects. Also it can be used as function arguments.
 
-### **API Endpoints:**
-###  **All Issues:** 
-  - https://phi-lab-server.vercel.app/api/v1/lab/issues 
+### What is the difference between map(), filter(), and forEach()?
 
+In Javascript all these map(), filter() and forEach() are used to loop through array.
 
-###  **Single Issue:**
-   - https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
+- map(): It also loops through array & return a new array.
+- filter(): It checks condition & return a new array with the condition
+- forEach(): loops through array & used to save data to external variable or console.log(). It returns itself undefined.
 
-   - Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
+### What is an arrow function?
 
+- Arrow Function is a shorter way to write a function from ES6. It makes codes more clean & more readable.
 
-###  **Search Issue:** https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
+### What are template literals?
 
-   - Example:  https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
-
-
----
-
-## 📝 Main Requirements
-
-## 🎨 Design Part
-
-## Login Page
-- Create a login page containing a logo, title, and sub-title
-- Below that, there will be 2 inputs, a sign-in button, and a demo credential to sign in. Follow the Figma for this page 
-- Styled as per Figma
-
-## Main Page: 
-
-### Navbar: 
-
-- Navbar with website logo/name on the left
-- Search input and button on the right
-
-### Tab Section like Figma: 
-
-- 3 tab ( All, Open, Closed) at the top of this section.(**All**, **Open**, **Closed**)
-
-- Below the tab, there will be an icon, the issue count, some text on the left, and an open and closed marker on the right
-
-- Responsiveness: The website should be responsive for mobile devices. It is totally up to you. 
-
-
---- 
-
-
-## ⚙️ Functionalities
-- In login page, there will be default admin credentials (username, password). You need to sign in using these credentials.
-
-- Load all issues and display as per Figma
-
-- On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data 
-
-- Each card shows:
-  - Title
-  - Description
-  - Status
-  - Category
-  - Author
-  - Priority
-  - Label
-  - CreatedAt
-- Clicking on a tree name in a card will open a modal and show all the information about that Issue. 
-
-### 🚀 Challenges
-
-
-- Show the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top. 
-
-- Loading spinner on data load
-
-- Show active button on changing category names
-
-- Implement Search Functionality and 8 meaningful github commit.  
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
-    - 1️⃣ What is the difference between var, let, and const?
-    - 2️⃣ What is the spread operator (...)?
-    - 3️⃣ What is the difference between map(), filter(), and forEach()?
-    - 4️⃣ What is an arrow function?
-    - 5️⃣ What are template literals?
-
-
----
-
-## 🛠️ Technology Stack
-
-- **HTML**
-- **CSS** (Vanilla/Tailwind/DaisyUI)
-- **JavaScript** (Vanilla)
-
----
-
-## 🔑 Demo Credentials
-
-```text
-Username: admin
-Password: admin123
-```
-
-
----
-
-### Optional: 
- - No need to show status: Open, Closed styles On modals. 
- - No Need to show icon on labels 
- - No need to apply styles on Priority 
---- 
-
-
-## 📤 What to submit
-
-- **GitHub Repository Link:**
-- **Live Site Link:**
-
----
-
-
+- Template Literals is to general string ""/''. But it use backTick ``. It is very useful in many ways.Mainly we can use it for multiline string & expression inside strings. It can be used also to use Dynamic API.
