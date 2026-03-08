@@ -1,5 +1,25 @@
 let allIssues = [];
 const issueContainer = document.getElementById("issue-container");
+const allTab = document.getElementById("all-issue-tab");
+const openTab = document.getElementById("open-issue-tab");
+const closedTab = document.getElementById("closed-issue-tab");
+
+function filterIssues(status) {
+  let filteredData = [];
+  if (status === "all") {
+    filteredData = allIssues;
+  } else {
+    filteredData = allIssues.filter((issue) => issue.status === status);
+  }
+  displayIssues(filteredData);
+
+  document.getElementById("total-issue-count").innerText =
+    `${filteredData.length} ${status.charAt(0).toUpperCase() + status.slice(1)} Issues`;
+}
+
+allTab.addEventListener("click", () => filterIssues("all"));
+openTab.addEventListener("click", () => filterIssues("open"));
+closedTab.addEventListener("click", () => filterIssues("closed"));
 
 async function loadAllIssues() {
   const res = await fetch(
@@ -12,6 +32,8 @@ async function loadAllIssues() {
 }
 
 function displayIssues(issues) {
+  issueContainer.innerHTML = "";
+
   issues.forEach((issue) => {
     const isOpen = issue.status === "open";
 
