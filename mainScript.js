@@ -1,10 +1,39 @@
 let allIssues = [];
+let currentTab = "all";
 const issueContainer = document.getElementById("issue-container");
 const allTab = document.getElementById("all-issue-tab");
 const openTab = document.getElementById("open-issue-tab");
 const closedTab = document.getElementById("closed-issue-tab");
+const searchInput = document.getElementById("search-input");
+const totalCountHeader = document.getElementById("total-issue-count");
+const loadingSpinner = document.getElementById("loading");
+
+const tabs = {
+  all: document.getElementById("all-issue-tab"),
+  open: document.getElementById("open-issue-tab"),
+  closed: document.getElementById("closed-issue-tab"),
+};
+
+function toggleLoading(isLoading) {
+  loadingSpinner.classList.toggle("hidden", !isLoading);
+  issueContainer.classList.toggle("hidden", isLoading);
+}
+
+function updateHeaderCount(count, label) {
+  totalCountHeader.innerText = `${count} ${label} Issues`;
+}
+
+function updateTabActiveStyle(status) {
+  Object.values(tabs).forEach((tab) => {
+    tab.classList.remove("bg-indigo-600", "text-white");
+    tab.classList.add("bg-white", "text-black");
+  });
+  tabs[status].classList.add("bg-indigo-600", "text-white");
+  tabs[status].classList.remove("bg-white", "text-black");
+}
 
 function filterIssues(status) {
+  currentTab = status;
   let filteredData = [];
   if (status === "all") {
     filteredData = allIssues;
@@ -12,6 +41,7 @@ function filterIssues(status) {
     filteredData = allIssues.filter((issue) => issue.status === status);
   }
   displayIssues(filteredData);
+  updateTabActiveStyle(status);
 
   document.getElementById("total-issue-count").innerText =
     `${filteredData.length} ${status.charAt(0).toUpperCase() + status.slice(1)} Issues`;
@@ -22,13 +52,16 @@ openTab.addEventListener("click", () => filterIssues("open"));
 closedTab.addEventListener("click", () => filterIssues("closed"));
 
 async function loadAllIssues() {
+  toggleLoading(true);
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
   allIssues = data.data;
 
+  updateHeaderCount(allIssues.length, "Total");
   displayIssues(allIssues);
+  toggleLoading(false);
 }
 
 function displayIssues(issues) {
@@ -98,3 +131,29 @@ function displayIssues(issues) {
 }
 
 loadAllIssues();
+
+async function searchIssues(query) {
+  if (!query) {
+    filterIssues(currentTab);
+    return;
+  }
+  toggleLoading(true);
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${query}`,
+  );
+  const data = await res.json();
+  let results = data.data;
+
+  if (currentTab !== "all") {
+    results = results.filter((issue) => issue.status === currentTab);
+  }
+
+  updateHeaderCount(results.length, `Search Results in ${currentTab}`);
+  displayIssues(results);
+  toggleLoading(false);
+}
+
+searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.trim();
+  searchIssues(value);
+});
