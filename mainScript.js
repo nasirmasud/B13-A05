@@ -58,6 +58,21 @@ function openModal(issue, labelsHtml) {
     issue.createdAt,
   ).toLocaleDateString("en-US");
 
+  const statusEl = document.getElementById("modal-status");
+  statusEl.innerText = isOpen ? "Opened" : "Closed";
+  statusEl.className = `px-3 py-0.5 rounded-full text-xs font-medium text-white ${isOpen ? "bg-emerald-500" : "bg-indigo-500"}`;
+
+  const priorityEl = document.getElementById("modal-priority");
+  let modalPriorityBg = "";
+
+  if (issue.priority === "high") modalPriorityBg = "bg-red-500";
+  else if (issue.priority === "medium") modalPriorityBg = "bg-yellow-500";
+  else modalPriorityBg = "bg-slate-500";
+
+  priorityEl.innerText = issue.priority.toUpperCase();
+  priorityEl.className = `px-4 py-1 rounded-lg text-sm font-bold text-white ${modalPriorityBg}`;
+
+  document.getElementById("modal-labels").innerHTML = labelsHtml;
   document.getElementById("issue-modal").checked = true;
 }
 
