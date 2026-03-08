@@ -2,7 +2,7 @@
 
 Var, let & const are 3 different style of declaring JavaScript variables. They all have some behavioral differences with Scoping, Redeclaration & Hoisting.
 
-- Ver was the only way for declaring JavaScript variables till JavaScript ES5. It is Function Scoped. It can be Redeclared & could be change Its value anytime which is problematic at many time. For hoisting, it is hoisted & set the value 'undefined' if its value is not declared before.
+- Ver was the only way for declaring JavaScript variables till JavaScript ES5. It is Function Scoped. It can be Redeclared & could be changed Its value anytime which is problematic at many time. For hoisting, it is hoisted & set the value 'undefined' if its value is not declared before.
 - Let was very popular & effective way to declare variable from JavaScript ES6. It is Block Scoped, It can be Redeclared outside its scope, can be changed its value anytime. For hoisting, it is also hoisted & unlike var it throws reference error if its value is not declared.
 - Const is also used from JavaScript ES6. It comes from the word constant. It is also Block Scoped, but It can not be Redeclared & can not be changed its value at-all. For hoisting, it is also hoisted & it can not be declared without value.
 
@@ -24,4 +24,4 @@ In Javascript all these map(), filter() and forEach() are used to loop through a
 
 ### What are template literals?
 
-- Template Literals is to general string ""/''. But it use backTick ``. It is very useful in many ways.Mainly we can use it for multiline string & expression inside strings. It can be used also to use Dynamic API.
+- Template Literals is to general string ""/''. But it use backTick ``. It is very useful in many ways.Mainly we can use it for multiline string & expression inside strings. Also it is used to add direct dynamic values into HTML. It can be used also to use Dynamic API.
