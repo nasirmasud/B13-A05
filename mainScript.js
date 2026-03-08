@@ -47,6 +47,20 @@ function filterIssues(status) {
     `${filteredData.length} ${status.charAt(0).toUpperCase() + status.slice(1)} Issues`;
 }
 
+function openModal(issue, labelsHtml) {
+  const isOpen = issue.status === "open";
+  document.getElementById("modal-title").innerText = issue.title;
+  document.getElementById("modal-description").innerText = issue.description;
+  document.getElementById("modal-author").innerText = issue.author;
+  document.getElementById("modal-assignee").innerText =
+    issue.assignee || "Unassigned";
+  document.getElementById("modal-date").innerText = new Date(
+    issue.createdAt,
+  ).toLocaleDateString("en-US");
+
+  document.getElementById("issue-modal").checked = true;
+}
+
 allTab.addEventListener("click", () => filterIssues("all"));
 openTab.addEventListener("click", () => filterIssues("open"));
 closedTab.addEventListener("click", () => filterIssues("closed"));
@@ -126,6 +140,7 @@ function displayIssues(issues) {
         </div>
       </div>`;
 
+    card.onclick = () => openModal(issue, labelsHtml);
     issueContainer.appendChild(card);
   });
 }
