@@ -15,6 +15,12 @@ function displayIssues(issues) {
   issues.forEach((issue) => {
     const isOpen = issue.status === "open";
 
+    let priorityStyle = "";
+    if (issue.priority === "high") priorityStyle = "bg-red-200 text-red-600";
+    else if (issue.priority === "medium")
+      priorityStyle = "bg-yellow-200 text-yellow-600";
+    else priorityStyle = "bg-slate-200 text-slate-600";
+
     const card = document.createElement("div");
     card.className = `card bg-white border-t-4 ${isOpen ? "border-t-emerald-500" : "border-t-indigo-500"} shadow-sm rounded-xl overflow-hidden hover:shadow-md transition-shadow cursor-pointer`;
 
@@ -24,7 +30,7 @@ function displayIssues(issues) {
           <span class="bg-emerald-50 p-1.5 rounded-full text-xs">
             <img src='./assets/Open-Status.png' alt='status' />
           </span>
-          <span class="badge bg-red-200 text-[10px] font-bold py-1 border-none">
+          <span class="badge ${priorityStyle} text-[10px] font-bold py-1 border-none">
             ${issue.priority.toUpperCase()}
           </span>
         </div>
